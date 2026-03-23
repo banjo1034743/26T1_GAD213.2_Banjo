@@ -38,6 +38,7 @@ namespace GAD213.P1.MovementSystem
 
         public void ToggleWalkingState(float directionWalking)
         {
+            // This will be chanegd to look for the const int provided from InputManager
             switch (directionWalking)
             {
                 case > 0:
