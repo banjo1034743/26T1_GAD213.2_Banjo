@@ -37,7 +37,7 @@ namespace GAD213.P1.MovementSystem
 
         [SerializeField] private AnimationStateController _animationStateController;
 
-        [SerializeField] private CharacterController _characterController;
+        [SerializeField] private MovementManager _characterController;
 
         #endregion
 

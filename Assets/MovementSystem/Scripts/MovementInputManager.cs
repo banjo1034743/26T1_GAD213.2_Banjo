@@ -1,10 +1,9 @@
-using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace GAD213.P1.MovementSystem
 {
-    public class InputManager : MonoBehaviour
+    public class MovementInputManager : MonoBehaviour
     {
         #region Variables
 

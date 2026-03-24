@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace GAD213.P1.MovementSystem
 {
-    public class CharacterController : MonoBehaviour
+    public class MovementManager : MonoBehaviour
     {
         #region Variables
 
@@ -38,7 +38,7 @@ namespace GAD213.P1.MovementSystem
 
         [Header("Scripts")]
 
-        [SerializeField] private InputManager _inputManager;
+        [SerializeField] private MovementInputManager _inputManager;
 
         #endregion
 

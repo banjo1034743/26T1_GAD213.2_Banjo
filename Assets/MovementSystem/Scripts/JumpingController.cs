@@ -27,7 +27,7 @@ namespace GAD213.P1.MovementSystem
 
         [Header("Scripts")]
 
-        [SerializeField] private CharacterController _characterController;
+        [SerializeField] private MovementManager _characterController;
 
         [SerializeField] private AnimationStateController _animationStateController;
 
