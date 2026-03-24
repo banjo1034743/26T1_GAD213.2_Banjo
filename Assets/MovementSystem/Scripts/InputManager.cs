@@ -8,9 +8,13 @@ namespace GAD213.P1.MovementSystem
     {
         #region Variables
 
-        [Header("Input System")]
+        [Header("<b>Input System</b>")]
 
-        [SerializeField] private InputActionAsset _inputActionAsset;
+        [Space(15)]
+
+        [SerializeField] private PlayerInput _playerInput;
+
+        [SerializeField] private InputActionAsset _inputActionAsset; // Need to initialise seperatley as will throw an error in OnEnable otherwise
 
         private InputActionMap _inputActionMap;
 
@@ -20,11 +24,7 @@ namespace GAD213.P1.MovementSystem
 
         // === INPUT DEVICES ===
 
-        private InputDevice _inputDeviceGamepad;
-
         private const int _usingGamepad = 0;
-
-        private InputDevice _inputDeviceKeyboard;
 
         private const int _usingKeyboard = 1;
 
@@ -47,14 +47,14 @@ namespace GAD213.P1.MovementSystem
         /// We want to return one of the const int values to represent one of these options
         /// </summary>
         /// <returns></returns>
-        public int InputDeviceUsed() 
+        public int ControlSchemeUsed() 
         {
-            if (_inputDeviceGamepad.wasUpdatedThisFrame)
+            if (_playerInput.currentControlScheme == "Controller")
             {
                 Debug.Log("We are using the Gamepad!");
                 return _usingGamepad;
             }
-            else if (_inputDeviceKeyboard.wasUpdatedThisFrame)
+            else if (_playerInput.currentControlScheme == "Keyboard")
             {
                 Debug.Log("We are using the keyboard!");
                 return _usingKeyboard;
@@ -71,13 +71,6 @@ namespace GAD213.P1.MovementSystem
             _inputActionMap = _inputActionAsset.FindActionMap("MovementSystem");
 
             _inputActionMove = _inputActionMap.FindAction("Move");
-
-            InputDevice[] devices = new InputDevice[] { InputSystem.AddDevice<Gamepad>(), InputSystem.AddDevice<Keyboard>() };
-
-            _inputActionAsset.devices = devices;
-
-            _inputDeviceGamepad = devices[0];
-            _inputDeviceKeyboard = devices[1];
         }
 
         #endregion

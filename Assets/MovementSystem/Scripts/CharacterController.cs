@@ -110,7 +110,7 @@ namespace GAD213.P1.MovementSystem
 
         private bool HasDoneVerticalJumpInput()
         {
-            switch (_inputManager.InputDeviceUsed())
+            switch (_inputManager.ControlSchemeUsed())
             {
                 case 0:
                     if (_inputManager.GetMoveValue().y > 0.9f && _inputManager.GetMoveValue().x < _analogStickXValueAllowance || _inputManager.GetMoveValue().y > 0.9f && _inputManager.GetMoveValue().x > -_analogStickXValueAllowance)
@@ -139,20 +139,43 @@ namespace GAD213.P1.MovementSystem
 
         private bool HasDoneHorizontalJumpInput()
         {
-            // If the input stick is flicked diagonally in the upper right corner, we have inputted the command to jump forward
-            if (_inputManager.GetMoveValue().x >= 0.7f && _inputManager.GetMoveValue().x <= 0.9f && _inputManager.GetMoveValue().y >= 0.5f && _inputManager.GetMoveValue().y <= 0.7f)
+            switch (_inputManager.ControlSchemeUsed())
             {
-                return true;
-            }
-            // If the input stick is flicked diagonally in the upper left corner, we have inputted the command to jump backward
-            else if (_inputManager.GetMoveValue().x >= -0.9f && _inputManager.GetMoveValue().x <= -0.7f && _inputManager.GetMoveValue().y >= 0.4f && _inputManager.GetMoveValue().x <= 0.6f)
-            {
-                return true;
-            }
-            // Otherwise, we have not inputted any jumping command
-            else
-            {
-                return false;
+                case 0:
+                    // If the input stick is flicked diagonally in the upper right corner, we have inputted the command to jump forward
+                    if (_inputManager.GetMoveValue().x >= 0.6f && _inputManager.GetMoveValue().x <= 0.9f && _inputManager.GetMoveValue().y >= 0.5f && _inputManager.GetMoveValue().y <= 0.7f)
+                    {
+                        return true;
+                    }
+                    // If the input stick is flicked diagonally in the upper left corner, we have inputted the command to jump backward
+                    else if (_inputManager.GetMoveValue().x >= -0.9f && _inputManager.GetMoveValue().x <= -0.7f && _inputManager.GetMoveValue().y >= 0.4f && _inputManager.GetMoveValue().x <= 0.6f)
+                    {
+                        return true;
+                    }
+                    // Otherwise, we have not inputted any jumping command
+                    else
+                    {
+                        return false;
+                    }
+                case 1:
+                    // If the input stick is flicked diagonally in the upper right corner, we have inputted the command to jump forward
+                    if (_inputManager.GetMoveValue().x > 0.7f && _inputManager.GetMoveValue().x < 0.72f && _inputManager.GetMoveValue().y > 0.7f && _inputManager.GetMoveValue().y < 0.72f)
+                    {
+                        return true;
+                    }
+                    // If the input stick is flicked diagonally in the upper left corner, we have inputted the command to jump backward
+                    else if (_inputManager.GetMoveValue().x < -0.7f && _inputManager.GetMoveValue().x > -0.72f && _inputManager.GetMoveValue().y > 0.7f && _inputManager.GetMoveValue().y < 0.72f)
+                    {
+                        return true;
+                    }
+                    // Otherwise, we have not inputted any jumping command
+                    else
+                    {
+                        return false;
+                    }
+                default:
+                    Debug.Log("Horizontal jump failed wtf");
+                    return false;
             }
         }
 
