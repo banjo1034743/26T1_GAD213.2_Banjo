@@ -47,7 +47,7 @@ namespace GAD213.P1.MovementSystem
         // Called every frame in Update()
         private void CallIdle()
         {
-            if (_inputManager.GetMoveValue().x <= 0 && _inputManager.GetMoveValue().y == 0 && _jumpingController.IsJumping == false) // Dont want to switch to idle mid jump anim
+            if (_inputManager.GetMoveValue().x == 0 && _inputManager.GetMoveValue().y == 0 && _jumpingController.IsJumping == false) // Dont want to switch to idle mid jump anim
             {
                 _idleController.Idle();
             }
@@ -110,14 +110,31 @@ namespace GAD213.P1.MovementSystem
 
         private bool HasDoneVerticalJumpInput()
         {
-            if (_inputManager.GetMoveValue().y > 0.9f && _inputManager.GetMoveValue().x < _analogStickXValueAllowance || _inputManager.GetMoveValue().y > 0.9f && _inputManager.GetMoveValue().x > -_analogStickXValueAllowance)
+            switch (_inputManager.InputDeviceUsed())
             {
-                return true;
+                case 0:
+                    if (_inputManager.GetMoveValue().y > 0.9f && _inputManager.GetMoveValue().x < _analogStickXValueAllowance || _inputManager.GetMoveValue().y > 0.9f && _inputManager.GetMoveValue().x > -_analogStickXValueAllowance)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                case 1:
+                    if (_inputManager.GetMoveValue().y > 0.9f && _inputManager.GetMoveValue().x == 0)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                default:
+                    Debug.Log("Vertical jump failed wtf");
+                    return false;
             }
-            else
-            {
-                return false;
-            }
+
         }
 
         private bool HasDoneHorizontalJumpInput()
