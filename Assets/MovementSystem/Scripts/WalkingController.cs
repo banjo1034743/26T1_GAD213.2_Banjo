@@ -21,7 +21,7 @@ namespace GAD213.P1.MovementSystem
 
         [Header("Scripts")]
 
-        [SerializeField] private AnimationStateController _animationStateController;
+        [SerializeField] private MovementAnimationController _animationStateController;
 
         [SerializeField] private GroundChecker _groundChecker;
 

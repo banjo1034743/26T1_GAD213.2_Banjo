@@ -618,26 +618,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerRoot
       objectReference: {fileID: 0}
-    - target: {fileID: 6669519345351180661, guid: a5a041f846b64794f8a3ca7c1c07d136, type: 3}
-      propertyPath: m_DefaultActionMap
-      value: Fighting
-      objectReference: {fileID: 0}
-    - target: {fileID: 6669519345351180661, guid: a5a041f846b64794f8a3ca7c1c07d136, type: 3}
-      propertyPath: m_ActionEvents.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6669519345351180661, guid: a5a041f846b64794f8a3ca7c1c07d136, type: 3}
-      propertyPath: m_ActionEvents.Array.data[1].m_ActionId
-      value: 8cc9ee28-2db6-43c0-b20f-31edd32c3c05
-      objectReference: {fileID: 0}
-    - target: {fileID: 6669519345351180661, guid: a5a041f846b64794f8a3ca7c1c07d136, type: 3}
-      propertyPath: m_ActionEvents.Array.data[1].m_ActionName
-      value: 'Fighting/Attack Weak Low[/Keyboard/t]'
-      objectReference: {fileID: 0}
-    - target: {fileID: 8923988306174775292, guid: a5a041f846b64794f8a3ca7c1c07d136, type: 3}
-      propertyPath: _inputActionAsset
-      value: 
-      objectReference: {fileID: -944628639613478452, guid: 8475b0f0902a8ac4b926d681abc805bf, type: 3}
     - target: {fileID: 9038023654447525392, guid: a5a041f846b64794f8a3ca7c1c07d136, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.85
@@ -681,73 +661,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7850710225100607880, guid: a5a041f846b64794f8a3ca7c1c07d136, type: 3}
-      insertIndex: 4
-      addedObject: {fileID: 1800180255}
-    - targetCorrespondingSourceObject: {fileID: 7850710225100607880, guid: a5a041f846b64794f8a3ca7c1c07d136, type: 3}
-      insertIndex: 5
-      addedObject: {fileID: 1800180254}
-    - targetCorrespondingSourceObject: {fileID: 7850710225100607880, guid: a5a041f846b64794f8a3ca7c1c07d136, type: 3}
-      insertIndex: 10
-      addedObject: {fileID: 1800180249}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a5a041f846b64794f8a3ca7c1c07d136, type: 3}
---- !u!1 &1800180246 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7850710225100607880, guid: a5a041f846b64794f8a3ca7c1c07d136, type: 3}
-  m_PrefabInstance: {fileID: 1755437006}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1800180249
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1800180246}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f456db328dbdd747b02a0cf02b31631, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1800180254
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1800180246}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21078d33b8500bc47aa5c1749e612fcb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _inputManager: {fileID: 1800180255}
-  _attackController: {fileID: 1800180249}
---- !u!114 &1800180255
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1800180246}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f9b717aa0985f74497ecff66f9946c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _playerInput: {fileID: 1800180258}
-  _inputActionAsset: {fileID: -944628639613478452, guid: 14ba16ba977594346b62f21fd05aff61, type: 3}
---- !u!114 &1800180258 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6669519345351180661, guid: a5a041f846b64794f8a3ca7c1c07d136, type: 3}
-  m_PrefabInstance: {fileID: 1755437006}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1800180246}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1843512028
 GameObject:
   m_ObjectHideFlags: 0

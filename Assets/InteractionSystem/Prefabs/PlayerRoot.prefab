@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4867733408095459053}
   - component: {fileID: 5131727689661279264}
   - component: {fileID: 2640644909906439497}
+  - component: {fileID: 502919701539188183}
   - component: {fileID: 8349469020241562977}
   m_Layer: 0
   m_Name: PlayerSprite
@@ -102,6 +103,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerAnimator: {fileID: 8349469020241562977}
+--- !u!114 &502919701539188183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2854515206235652649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1c3f206d8a869640afad99d052be25b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerAnimator: {fileID: 8349469020241562977}
 --- !u!95 &8349469020241562977
 Animator:
   serializedVersion: 7
@@ -112,7 +126,7 @@ Animator:
   m_GameObject: {fileID: 2854515206235652649}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 419358aa2a8b6f849b312bc75ba7ceda, type: 2}
+  m_Controller: {fileID: 9100000, guid: 7e5525daf48ec2942b4615bca7921252, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -260,10 +274,13 @@ GameObject:
   - component: {fileID: 6669519345351180661}
   - component: {fileID: 8923988306174775292}
   - component: {fileID: 1188485897565697338}
+  - component: {fileID: 2135987908554758939}
+  - component: {fileID: 6316557819435948775}
   - component: {fileID: 6211189118840484174}
   - component: {fileID: 8863458578588382618}
   - component: {fileID: 4344616849470838668}
   - component: {fileID: 6929701835297503305}
+  - component: {fileID: 9205989220099573195}
   - component: {fileID: 8837107375475147431}
   m_Layer: 0
   m_Name: PlayerController
@@ -318,9 +335,13 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 785a1388-63f5-431a-8815-e6aa4cf2f8b7
     m_ActionName: 'MovementSystem/Move[/Gamepad3/leftStick,/Keyboard4/w,/Keyboard4/s,/Keyboard4/a,/Keyboard4/d]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8cc9ee28-2db6-43c0-b20f-31edd32c3c05
+    m_ActionName: 'Fighting/Attack Weak Low[/Keyboard/t]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard
-  m_DefaultActionMap: 90d30e4a-b929-410a-81f1-09ffa973238e
+  m_DefaultActionMap: Fighting
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!114 &8923988306174775292
@@ -336,7 +357,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerInput: {fileID: 6669519345351180661}
-  _inputActionAsset: {fileID: -944628639613478452, guid: 14ba16ba977594346b62f21fd05aff61, type: 3}
+  _inputActionAsset: {fileID: -944628639613478452, guid: 8475b0f0902a8ac4b926d681abc805bf, type: 3}
 --- !u!114 &1188485897565697338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -359,6 +380,34 @@ MonoBehaviour:
   _originalColliderPosition: {x: 0, y: 0}
   _collider: {fileID: 4551694876620202595}
   _inputManager: {fileID: 8923988306174775292}
+--- !u!114 &2135987908554758939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7850710225100607880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f9b717aa0985f74497ecff66f9946c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerInput: {fileID: 6669519345351180661}
+  _inputActionAsset: {fileID: -944628639613478452, guid: 14ba16ba977594346b62f21fd05aff61, type: 3}
+--- !u!114 &6316557819435948775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7850710225100607880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21078d33b8500bc47aa5c1749e612fcb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _inputManager: {fileID: 2135987908554758939}
+  _attackController: {fileID: 9205989220099573195}
 --- !u!114 &6211189118840484174
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -428,6 +477,19 @@ MonoBehaviour:
   _groundChecker: {fileID: 3883912634979621866}
   _animationStateController: {fileID: 2640644909906439497}
   _characterController: {fileID: 1188485897565697338}
+--- !u!114 &9205989220099573195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7850710225100607880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f456db328dbdd747b02a0cf02b31631, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animationController: {fileID: 0}
 --- !u!50 &8837107375475147431
 Rigidbody2D:
   serializedVersion: 5

@@ -6,7 +6,9 @@ namespace GAD213.P2.InteractionSystem
     {
         #region Variables
 
+        [Header("Scripts")]
 
+        [SerializeField] private FightingAnimationController _animationController;
 
         #endregion
 
@@ -15,6 +17,8 @@ namespace GAD213.P2.InteractionSystem
         public void AttackWeakLow()
         {
             Debug.Log("We ahve used our Low Weak Attack!");
+
+            _animationController.ToggleAttackWeakLowState();
         }
 
         #endregion

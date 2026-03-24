@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace GAD213.P1.MovementSystem
 {
-    public class AnimationStateController : MonoBehaviour
+    public class MovementAnimationController : MonoBehaviour
     {
         #region Variables
 

@@ -35,7 +35,7 @@ namespace GAD213.P1.MovementSystem
 
         [SerializeField] private GroundChecker _groundChecker;
 
-        [SerializeField] private AnimationStateController _animationStateController;
+        [SerializeField] private MovementAnimationController _animationStateController;
 
         [SerializeField] private MovementManager _characterController;
 
