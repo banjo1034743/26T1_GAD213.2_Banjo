@@ -18,6 +18,12 @@ namespace GAD213.P2.InteractionSystem
 
         private const int _attackWeakLowState = 5;
 
+        [Header("Scripts")]
+
+        [Space(10)]
+
+        [SerializeField] private FightingManager _fightingManager;
+
         #endregion
 
         #region Methods
@@ -25,6 +31,11 @@ namespace GAD213.P2.InteractionSystem
         public void ToggleAttackWeakLowState()
         {
             _playerAnimator.SetInteger("currentAnimationState", _attackWeakLowState);
+        }
+
+        public void EndAttackWeakLowStateAnimation()
+        {
+            _fightingManager.IsAttacking = false;
         }
 
         #endregion

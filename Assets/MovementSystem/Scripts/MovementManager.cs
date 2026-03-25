@@ -1,3 +1,4 @@
+using GAD213.P2.InteractionSystem;
 using UnityEngine;
 
 namespace GAD213.P1.MovementSystem
@@ -28,6 +29,10 @@ namespace GAD213.P1.MovementSystem
         [Tooltip("We don't want the player to move back and forth if the analog stick is angled left or right more than going down. At the same time, we dont want to make it diffuclt to crouch by making the input too closed off. This should be set to a sweet spot.")]
         [SerializeField] private float _analogStickXValueAllowance;
 
+        public bool IsActive { get { return _isActive; } set { _isActive = value; } }
+
+        private bool _isActive;
+
         [Header("Collider Variables")]
 
         [SerializeField] private Vector2 _originalColliderScale;
@@ -38,7 +43,11 @@ namespace GAD213.P1.MovementSystem
 
         [Header("Scripts")]
 
-        [SerializeField] private MovementInputManager _inputManager;
+        [SerializeField] private MovementInputManager _inputManagerMovement;
+
+        // Ideally we want to less intangle the Interaction System with the Movement System to make it
+        // more encapsulated. If time allows it, lets refactor this
+        [SerializeField] private FightingManager _fightingManager;
 
         #endregion
 
@@ -47,8 +56,10 @@ namespace GAD213.P1.MovementSystem
         // Called every frame in Update()
         private void CallIdle()
         {
-            if (_inputManager.GetMoveValue().x == 0 && _inputManager.GetMoveValue().y == 0 && _jumpingController.IsJumping == false) // Dont want to switch to idle mid jump anim
+            // _inputManager.GetMoveValue().x == 0 && _inputManager.GetMoveValue().y == 0 && _jumpingController.IsJumping == false
+            if (_isActive == false) // Dont want to switch to idle mid jump anim
             {
+                Debug.Log("We're not active atm, so we're calling Idle");
                 _idleController.Idle();
             }
         }
@@ -58,13 +69,13 @@ namespace GAD213.P1.MovementSystem
         {
             if (_crouchController.IsCrouching == false && _jumpingController.IsJumping == false)
             {
-                Debug.Log(_inputManager.GetMoveValue());
+                Debug.Log(_inputManagerMovement.GetMoveValue());
 
                 // If the player is moving the analog stick to the left or right without angling it upward, move
 
-                if (_inputManager.GetMoveValue().x > 0 && _inputManager.GetMoveValue().y < _analogStickYValueAllowance || _inputManager.GetMoveValue().x < 0 && _inputManager.GetMoveValue().y < _analogStickYValueAllowance)
+                if (_inputManagerMovement.GetMoveValue().x > 0 && _inputManagerMovement.GetMoveValue().y < _analogStickYValueAllowance || _inputManagerMovement.GetMoveValue().x < 0 && _inputManagerMovement.GetMoveValue().y < _analogStickYValueAllowance)
                 {
-                    _walkingController.Walk(_inputManager.GetMoveValue());
+                    _walkingController.Walk(_inputManagerMovement.GetMoveValue());
                 }
             }
         }
@@ -85,7 +96,7 @@ namespace GAD213.P1.MovementSystem
             {
                 if (_jumpingController.IsJumping == false)
                 {
-                    _jumpingController.Jump(_jumpingHorizontally, _inputManager.GetMoveValue().x);
+                    _jumpingController.Jump(_jumpingHorizontally, _inputManagerMovement.GetMoveValue().x);
                 }
             }
         }
@@ -96,7 +107,7 @@ namespace GAD213.P1.MovementSystem
             if (_jumpingController.IsJumping == false)
             {
                 // If the left analog stick is flicked down, and not angled in any direction too far, crouch.
-                if (_inputManager.GetMoveValue().y < -0.9f && _inputManager.GetMoveValue().x < _analogStickXValueAllowance || _inputManager.GetMoveValue().y < -0.9f && _inputManager.GetMoveValue().x > -_analogStickXValueAllowance)
+                if (_inputManagerMovement.GetMoveValue().y < -0.9f && _inputManagerMovement.GetMoveValue().x < _analogStickXValueAllowance || _inputManagerMovement.GetMoveValue().y < -0.9f && _inputManagerMovement.GetMoveValue().x > -_analogStickXValueAllowance)
                 {
                     _crouchController.Crouch();
                 }
@@ -108,12 +119,26 @@ namespace GAD213.P1.MovementSystem
             }
         }
 
+        private void DetermineIfActive()
+        {
+            if (_inputManagerMovement.GetMoveValue().x == 0 && _inputManagerMovement.GetMoveValue().y == 0 && _jumpingController.IsJumping == false && _fightingManager.IsAttacking == false)
+            {
+                Debug.Log("We are not active");
+                _isActive = false;
+            }
+            else
+            {
+                Debug.Log("We are currently active");
+                _isActive = true;
+            }
+        }
+
         private bool HasDoneVerticalJumpInput()
         {
-            switch (_inputManager.ControlSchemeUsed())
+            switch (_inputManagerMovement.ControlSchemeUsed())
             {
                 case 0:
-                    if (_inputManager.GetMoveValue().y > 0.9f && _inputManager.GetMoveValue().x < _analogStickXValueAllowance || _inputManager.GetMoveValue().y > 0.9f && _inputManager.GetMoveValue().x > -_analogStickXValueAllowance)
+                    if (_inputManagerMovement.GetMoveValue().y > 0.9f && _inputManagerMovement.GetMoveValue().x < _analogStickXValueAllowance || _inputManagerMovement.GetMoveValue().y > 0.9f && _inputManagerMovement.GetMoveValue().x > -_analogStickXValueAllowance)
                     {
                         return true;
                     }
@@ -122,7 +147,7 @@ namespace GAD213.P1.MovementSystem
                         return false;
                     }
                 case 1:
-                    if (_inputManager.GetMoveValue().y > 0.9f && _inputManager.GetMoveValue().x == 0)
+                    if (_inputManagerMovement.GetMoveValue().y > 0.9f && _inputManagerMovement.GetMoveValue().x == 0)
                     {
                         return true;
                     }
@@ -139,16 +164,16 @@ namespace GAD213.P1.MovementSystem
 
         private bool HasDoneHorizontalJumpInput()
         {
-            switch (_inputManager.ControlSchemeUsed())
+            switch (_inputManagerMovement.ControlSchemeUsed())
             {
                 case 0:
                     // If the input stick is flicked diagonally in the upper right corner, we have inputted the command to jump forward
-                    if (_inputManager.GetMoveValue().x >= 0.6f && _inputManager.GetMoveValue().x <= 0.9f && _inputManager.GetMoveValue().y >= 0.5f && _inputManager.GetMoveValue().y <= 0.7f)
+                    if (_inputManagerMovement.GetMoveValue().x >= 0.6f && _inputManagerMovement.GetMoveValue().x <= 0.9f && _inputManagerMovement.GetMoveValue().y >= 0.5f && _inputManagerMovement.GetMoveValue().y <= 0.7f)
                     {
                         return true;
                     }
                     // If the input stick is flicked diagonally in the upper left corner, we have inputted the command to jump backward
-                    else if (_inputManager.GetMoveValue().x >= -0.9f && _inputManager.GetMoveValue().x <= -0.7f && _inputManager.GetMoveValue().y >= 0.4f && _inputManager.GetMoveValue().x <= 0.6f)
+                    else if (_inputManagerMovement.GetMoveValue().x >= -0.9f && _inputManagerMovement.GetMoveValue().x <= -0.7f && _inputManagerMovement.GetMoveValue().y >= 0.4f && _inputManagerMovement.GetMoveValue().x <= 0.6f)
                     {
                         return true;
                     }
@@ -159,12 +184,12 @@ namespace GAD213.P1.MovementSystem
                     }
                 case 1:
                     // If the input stick is flicked diagonally in the upper right corner, we have inputted the command to jump forward
-                    if (_inputManager.GetMoveValue().x > 0.7f && _inputManager.GetMoveValue().x < 0.72f && _inputManager.GetMoveValue().y > 0.7f && _inputManager.GetMoveValue().y < 0.72f)
+                    if (_inputManagerMovement.GetMoveValue().x > 0.7f && _inputManagerMovement.GetMoveValue().x < 0.72f && _inputManagerMovement.GetMoveValue().y > 0.7f && _inputManagerMovement.GetMoveValue().y < 0.72f)
                     {
                         return true;
                     }
                     // If the input stick is flicked diagonally in the upper left corner, we have inputted the command to jump backward
-                    else if (_inputManager.GetMoveValue().x < -0.7f && _inputManager.GetMoveValue().x > -0.72f && _inputManager.GetMoveValue().y > 0.7f && _inputManager.GetMoveValue().y < 0.72f)
+                    else if (_inputManagerMovement.GetMoveValue().x < -0.7f && _inputManagerMovement.GetMoveValue().x > -0.72f && _inputManagerMovement.GetMoveValue().y > 0.7f && _inputManagerMovement.GetMoveValue().y < 0.72f)
                     {
                         return true;
                     }
@@ -179,11 +204,13 @@ namespace GAD213.P1.MovementSystem
             }
         }
 
-        public void InitializeCollider()
+        public void InitializeVariables()
         {
             _originalColliderScale = _collider.transform.localScale;
 
             _originalColliderPosition = _collider.transform.localPosition;
+
+            _isActive = false;
         }
 
         public void ResetCollider()
@@ -202,6 +229,8 @@ namespace GAD213.P1.MovementSystem
         {
             CallIdle();
             CallCrouch();
+
+            DetermineIfActive();
         }
 
         private void FixedUpdate()
@@ -212,7 +241,7 @@ namespace GAD213.P1.MovementSystem
 
         private void Start()
         {
-            InitializeCollider();
+            InitializeVariables();
         }
 
         #endregion

@@ -33,7 +33,7 @@ namespace GAD213.P1.MovementSystem
         
         public Vector2 GetMoveValue()
         {
-            Debug.Log(_inputActionMove.ReadValue<Vector2>());
+            //Debug.Log(_inputActionMove.ReadValue<Vector2>());
 
             // If we are using the controller, we return this
             return _inputActionMove.ReadValue<Vector2>();
@@ -50,12 +50,12 @@ namespace GAD213.P1.MovementSystem
         {
             if (_playerInput.currentControlScheme == "Controller")
             {
-                Debug.Log("We are using the Gamepad!");
+                //Debug.Log("We are using the Gamepad!");
                 return _usingGamepad;
             }
             else if (_playerInput.currentControlScheme == "Keyboard")
             {
-                Debug.Log("We are using the keyboard!");
+                //Debug.Log("We are using the keyboard!");
                 return _usingKeyboard;
             }
             else

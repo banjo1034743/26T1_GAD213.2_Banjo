@@ -116,6 +116,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerAnimator: {fileID: 8349469020241562977}
+  _fightingManager: {fileID: 6316557819435948775}
 --- !u!95 &8349469020241562977
 Animator:
   serializedVersion: 7
@@ -379,7 +380,8 @@ MonoBehaviour:
   _originalColliderScale: {x: 0, y: 0}
   _originalColliderPosition: {x: 0, y: 0}
   _collider: {fileID: 4551694876620202595}
-  _inputManager: {fileID: 8923988306174775292}
+  _inputManagerMovement: {fileID: 8923988306174775292}
+  _fightingManager: {fileID: 6316557819435948775}
 --- !u!114 &2135987908554758939
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -489,7 +491,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f456db328dbdd747b02a0cf02b31631, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animationController: {fileID: 0}
+  _attackWeakLowAnimation: {fileID: 7400000, guid: 6b95b8f6c7dcc8b448e782e301d1037b, type: 2}
+  _fightingManager: {fileID: 6316557819435948775}
+  _animationController: {fileID: 502919701539188183}
 --- !u!50 &8837107375475147431
 Rigidbody2D:
   serializedVersion: 5

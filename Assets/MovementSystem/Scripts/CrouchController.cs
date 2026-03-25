@@ -84,7 +84,7 @@ namespace GAD213.P1.MovementSystem
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         private void Start()
         {
-            _characterController.InitializeCollider();
+            _characterController.InitializeVariables();
         }
 
         #endregion
