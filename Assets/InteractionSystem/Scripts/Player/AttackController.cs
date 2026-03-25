@@ -7,6 +7,10 @@ namespace GAD213.P2.InteractionSystem
     {
         #region Variables
 
+        [Header("Parameters")]
+
+        [SerializeField] private float _attackWeakLowDamage;
+
         [Header("Animations")]
 
         [Space(10)]
@@ -36,6 +40,11 @@ namespace GAD213.P2.InteractionSystem
             _animationController.ToggleAttackWeakLowState();
 
             //performed = true;
+        }
+
+        public void DealDamage(string attackName)
+        {
+
         }
 
         //void Duration()
