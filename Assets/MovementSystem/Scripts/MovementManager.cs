@@ -67,7 +67,7 @@ namespace GAD213.P1.MovementSystem
         // Called in FixedUpdate(), as uses RB.MovePosition()
         private void CallWalk()
         {
-            if (_crouchController.IsCrouching == false && _jumpingController.IsJumping == false)
+            if (_crouchController.IsCrouching == false && _jumpingController.IsJumping == false && _fightingManager.IsAttacking == false)
             {
                 Debug.Log(_inputManagerMovement.GetMoveValue());
 
@@ -75,6 +75,7 @@ namespace GAD213.P1.MovementSystem
 
                 if (_inputManagerMovement.GetMoveValue().x > 0 && _inputManagerMovement.GetMoveValue().y < _analogStickYValueAllowance || _inputManagerMovement.GetMoveValue().x < 0 && _inputManagerMovement.GetMoveValue().y < _analogStickYValueAllowance)
                 {
+                    _fightingManager.IsAttacking = false;
                     _walkingController.Walk(_inputManagerMovement.GetMoveValue());
                 }
             }
@@ -84,19 +85,24 @@ namespace GAD213.P1.MovementSystem
         private void CallJump()
         {
             // If the left analog stick is flicked up and not angled in the left or right too much, call vertical jump
-            if (HasDoneVerticalJumpInput() == true)
+            if (_fightingManager.IsAttacking == false)
             {
-                if (_jumpingController.IsJumping == false)
+                if (HasDoneVerticalJumpInput() == true)
                 {
-                    _jumpingController.Jump(_jumpingVertically, 0f);
+                    if (_jumpingController.IsJumping == false)
+                    {
+                        _fightingManager.IsAttacking = false;
+                        _jumpingController.Jump(_jumpingVertically, 0f);
+                    }
                 }
-            }
-            // if we have flicked the analog stick to the upper right or left corners, call horizontal jump
-            else if (HasDoneHorizontalJumpInput() == true)
-            {
-                if (_jumpingController.IsJumping == false)
+                // if we have flicked the analog stick to the upper right or left corners, call horizontal jump
+                else if (HasDoneHorizontalJumpInput() == true)
                 {
-                    _jumpingController.Jump(_jumpingHorizontally, _inputManagerMovement.GetMoveValue().x);
+                    if (_jumpingController.IsJumping == false)
+                    {
+                        _fightingManager.IsAttacking = false;
+                        _jumpingController.Jump(_jumpingHorizontally, _inputManagerMovement.GetMoveValue().x);
+                    }
                 }
             }
         }
@@ -104,17 +110,21 @@ namespace GAD213.P1.MovementSystem
         // Called every frame in Update()
         private void CallCrouch()
         {
-            if (_jumpingController.IsJumping == false)
+            if (_fightingManager.IsAttacking == false)
             {
-                // If the left analog stick is flicked down, and not angled in any direction too far, crouch.
-                if (_inputManagerMovement.GetMoveValue().y < -0.9f && _inputManagerMovement.GetMoveValue().x < _analogStickXValueAllowance || _inputManagerMovement.GetMoveValue().y < -0.9f && _inputManagerMovement.GetMoveValue().x > -_analogStickXValueAllowance)
+                if (_jumpingController.IsJumping == false)
                 {
-                    _crouchController.Crouch();
-                }
-                // Otherwise, remain the same.
-                else
-                {
-                    _crouchController.Uncrouch();
+                    // If the left analog stick is flicked down, and not angled in any direction too far, crouch.
+                    if (_inputManagerMovement.GetMoveValue().y < -0.9f && _inputManagerMovement.GetMoveValue().x < _analogStickXValueAllowance || _inputManagerMovement.GetMoveValue().y < -0.9f && _inputManagerMovement.GetMoveValue().x > -_analogStickXValueAllowance)
+                    {
+                        _fightingManager.IsAttacking = false;
+                        _crouchController.Crouch();
+                    }
+                    // Otherwise, remain the same.
+                    else
+                    {
+                        _crouchController.Uncrouch();
+                    }
                 }
             }
         }

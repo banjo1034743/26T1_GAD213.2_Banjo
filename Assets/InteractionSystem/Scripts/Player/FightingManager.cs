@@ -11,7 +11,7 @@ namespace GAD213.P2.InteractionSystem
 
         public bool IsAttacking { get { return _isAttacking; } set { _isAttacking = value; } }
 
-        private bool _isAttacking = false;
+        [SerializeField] private bool _isAttacking = false;
 
         [Header("Scripts")]
 
@@ -34,17 +34,13 @@ namespace GAD213.P2.InteractionSystem
             }
         }
 
-        //private void CheckIfAttacking()
-        //{
-        //    if (_inputManager.AttackWeakLowPerformed() == true)
-        //    {
-        //        _isAttacking = true;
-        //    }
-        //    else
-        //    {
-        //        _isAttacking = false;
-        //    }
-        //}
+        private void CheckIfNotAttacking()
+        {
+            if (_inputManager.AttackWeakLowPerformed() == false)
+            {
+                _isAttacking = false;
+            }
+        }
 
         #endregion
 
@@ -55,7 +51,7 @@ namespace GAD213.P2.InteractionSystem
         {
             CallAttackWeakLow();
 
-            //CheckIfAttacking();
+            //CheckIfNotAttacking();
         }
 
         #endregion

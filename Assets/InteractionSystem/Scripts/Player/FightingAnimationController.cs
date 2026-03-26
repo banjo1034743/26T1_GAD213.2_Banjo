@@ -10,6 +10,8 @@ namespace GAD213.P2.InteractionSystem
 
         [SerializeField] private Animator _playerAnimator;
 
+        [SerializeField] private AnimationClip _animationClip;
+
         // === ANIMATION STATES ===
 
         // Our const int values start at 5 as our MovementSystem animation uses these in the Animator

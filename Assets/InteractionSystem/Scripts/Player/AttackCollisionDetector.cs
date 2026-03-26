@@ -6,23 +6,23 @@ namespace GAD213.P2.InteractionSystem
     {
         #region Variables
 
-        [Header("Attack Name")]
+        [Header("Attack Names")]
 
-        [Space(10)]
+        [Space(5)]
 
         [Tooltip("Set this to the name in the inspector")]
         [SerializeField] private string _attackName;
 
         [Header("Tags to read for")]
 
-        [Space(10)]
+        [Space(5)]
 
         [Tooltip("Set this to the current tag of dummy in the inspector")]
         [SerializeField] private string _testDummyTag;
 
         [Header("Scripts")]
 
-        [Space(10)]
+        [Space(5)]
 
         [Tooltip("Initialise in the inspector")]
         [SerializeField] private AttackController _attackController;
@@ -33,10 +33,11 @@ namespace GAD213.P2.InteractionSystem
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
 
-        private void OnCollisionEnter2D(Collision2D collision)
+        private void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.transform.CompareTag(_testDummyTag) == true)
             {
+                Debug.Log("We struck the dummy");
                 _attackController.DealDamage(_attackName);
             }
         }

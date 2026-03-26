@@ -13,7 +13,7 @@ namespace GAD213.P2.InteractionSystem
 
         [Header("Animations")]
 
-        [Space(10)]
+        [Space(5)]
 
         private float attackWeakLowDuration;
 
@@ -23,11 +23,13 @@ namespace GAD213.P2.InteractionSystem
 
         [Header("Scripts")]
 
-        [Space(10)]
+        [Space(5)]
 
         [SerializeField] private FightingManager _fightingManager;
 
         [SerializeField] private FightingAnimationController _animationController;
+
+        [SerializeField] private HealthManager _healthManager;
 
         #endregion
 
@@ -44,7 +46,13 @@ namespace GAD213.P2.InteractionSystem
 
         public void DealDamage(string attackName)
         {
-
+            switch (attackName)
+            {
+                case "Attack Weak Low":
+                    Debug.Log("We're dealing damage for the Attack Weak Low attack");
+                    _healthManager.UpdateHealth(-_attackWeakLowDamage);
+                    break;
+            }
         }
 
         //void Duration()

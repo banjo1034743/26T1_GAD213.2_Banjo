@@ -28,10 +28,6 @@ namespace GAD213.P1.MovementSystem
             {
                 _isOnGround = true;
             }
-            else
-            {
-                _isOnGround = false;
-            }
         }
 
         private void OnCollisionExit2D(Collision2D collision)
