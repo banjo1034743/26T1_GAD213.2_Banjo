@@ -29,9 +29,9 @@ namespace GAD213.P1.MovementSystem
         [Tooltip("We don't want the player to move back and forth if the analog stick is angled left or right more than going down. At the same time, we dont want to make it diffuclt to crouch by making the input too closed off. This should be set to a sweet spot.")]
         [SerializeField] private float _analogStickXValueAllowance;
 
-        public bool IsActive { get { return _isActive; } set { _isActive = value; } }
+        //public bool IsActive { get { return _isActive; } set { _isActive = value; } }
 
-        private bool _isActive;
+        //[SerializeField] private bool _isActive;
 
         [Header("Collider Variables")]
 
@@ -57,7 +57,7 @@ namespace GAD213.P1.MovementSystem
         private void CallIdle()
         {
             // _inputManager.GetMoveValue().x == 0 && _inputManager.GetMoveValue().y == 0 && _jumpingController.IsJumping == false
-            if (_isActive == false) // Dont want to switch to idle mid jump anim
+            if (_inputManagerMovement.GetMoveValue().x == 0 && _inputManagerMovement.GetMoveValue().y == 0 && _jumpingController.IsJumping == false && _fightingManager.IsAttacking == false) // Dont want to switch to idle mid jump anim
             {
                 Debug.Log("We're not active atm, so we're calling Idle");
                 _idleController.Idle();
@@ -129,19 +129,23 @@ namespace GAD213.P1.MovementSystem
             }
         }
 
-        private void DetermineIfActive()
-        {
-            if (_inputManagerMovement.GetMoveValue().x == 0 && _inputManagerMovement.GetMoveValue().y == 0 && _jumpingController.IsJumping == false && _fightingManager.IsAttacking == false)
-            {
-                Debug.Log("We are not active");
-                _isActive = false;
-            }
-            else
-            {
-                Debug.Log("We are currently active");
-                _isActive = true;
-            }
-        }
+        //private void DetermineIfActive()
+        //{
+        //    if (_inputManagerMovement.GetMoveValue().x == 0 && _inputManagerMovement.GetMoveValue().y == 0 && _jumpingController.IsJumping == false && _fightingManager.IsAttacking == false)
+        //    {
+        //        Debug.Log("We are not active");
+        //        _isActive = false;
+        //    }
+        //    else if (_fightingManager.IsAttacking == true)
+        //    {
+        //        _isActive = true;
+        //    }
+        //    else
+        //    {
+        //        Debug.Log("We are currently active");
+        //        _isActive = true;
+        //    }
+        //}
 
         private bool HasDoneVerticalJumpInput()
         {
@@ -220,7 +224,7 @@ namespace GAD213.P1.MovementSystem
 
             _originalColliderPosition = _collider.transform.localPosition;
 
-            _isActive = false;
+            //_isActive = false;
         }
 
         public void ResetCollider()
@@ -240,7 +244,7 @@ namespace GAD213.P1.MovementSystem
             CallIdle();
             CallCrouch();
 
-            DetermineIfActive();
+            //DetermineIfActive();
         }
 
         private void FixedUpdate()

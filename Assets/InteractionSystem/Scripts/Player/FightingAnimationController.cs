@@ -32,6 +32,7 @@ namespace GAD213.P2.InteractionSystem
 
         public void ToggleAttackWeakLowState()
         {
+            Debug.Log("We're setting the integer in the animation controller to 5");
             _playerAnimator.SetInteger("currentAnimationState", _attackWeakLowState);
         }
 
