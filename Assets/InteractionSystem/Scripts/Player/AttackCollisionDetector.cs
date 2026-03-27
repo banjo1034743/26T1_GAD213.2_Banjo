@@ -27,6 +27,9 @@ namespace GAD213.P2.InteractionSystem
         [Tooltip("Initialise in the inspector")]
         [SerializeField] private AttackController _attackController;
 
+        [Tooltip("Initialise in the inspector")]
+        [SerializeField] private SoundPlayer _soundPlayer;
+
         #endregion
 
         #region Unity Methods
@@ -39,6 +42,7 @@ namespace GAD213.P2.InteractionSystem
             {
                 Debug.Log("We struck the dummy");
                 _attackController.DealDamage(_attackName);
+                _soundPlayer.PlaySFXClipAt(_attackName, transform.position, 1f);
             }
         }
 
