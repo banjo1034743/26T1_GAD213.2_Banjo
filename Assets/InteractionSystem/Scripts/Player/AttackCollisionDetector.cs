@@ -32,6 +32,10 @@ namespace GAD213.P2.InteractionSystem
 
         #endregion
 
+        #region Methods
+
+        #endregion
+
         #region Unity Methods
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created

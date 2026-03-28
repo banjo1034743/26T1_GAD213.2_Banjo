@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 73120e2b4add78a4ba1f7059e1283141
+guid: a63620c659fd253418f71d8c0a740d9f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5149639424643850609
-    second: 01_TestDummyIdle_0
+      213: -7600648257468508503
+    second: GAD213P2TestDummyF4_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -72,12 +72,12 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 128
+    maxTextureSize: 256
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 2
+    textureCompression: 0
     compressionQuality: 50
-    crunchedCompression: 1
+    crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
     ignorePlatformSupport: 0
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 01_TestDummyIdle_0
+      name: GAD213P2TestDummyF4_0
       rect:
         serializedVersion: 2
         x: 0
         y: 2
         width: 68
-        height: 123
+        height: 126
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1716e33d5c1377740800000000000000
-      internalID: 5149639424643850609
+      spriteID: 9a6d5e60ea2158690800000000000000
+      internalID: -7600648257468508503
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      01_TestDummyIdle_0: 5149639424643850609
+      GAD213P2TestDummyF4_0: -7600648257468508503
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

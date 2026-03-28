@@ -75,7 +75,7 @@ namespace GAD213.P1.MovementSystem
 
                 if (_inputManagerMovement.GetMoveValue().x > 0 && _inputManagerMovement.GetMoveValue().y < _analogStickYValueAllowance || _inputManagerMovement.GetMoveValue().x < 0 && _inputManagerMovement.GetMoveValue().y < _analogStickYValueAllowance)
                 {
-                    _fightingManager.IsAttacking = false;
+                    //_fightingManager.IsAttacking = false;
                     _walkingController.Walk(_inputManagerMovement.GetMoveValue());
                 }
             }

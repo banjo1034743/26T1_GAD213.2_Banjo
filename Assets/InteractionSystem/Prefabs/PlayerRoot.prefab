@@ -446,6 +446,7 @@ MonoBehaviour:
   _isAttacking: 0
   _inputManager: {fileID: 2135987908554758939}
   _attackController: {fileID: 9205989220099573195}
+  _animationController: {fileID: 502919701539188183}
 --- !u!114 &6211189118840484174
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -576,7 +577,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2318692289812428929
 Transform:
   m_ObjectHideFlags: 0
@@ -615,7 +616,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8343672839185642096}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
@@ -642,7 +643,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0.019072875}
+  m_Offset: {x: 0.050351202, y: 0.019072875}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -652,7 +653,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 0.49456975}
+  m_Size: {x: 1.1007024, y: 0.49456975}
   m_EdgeRadius: 0
 --- !u!1 &8868708844332538595
 GameObject:

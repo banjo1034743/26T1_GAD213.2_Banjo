@@ -21,30 +21,52 @@ namespace GAD213.P2.InteractionSystem
 
         [SerializeField] private AttackController _attackController;
 
+        [SerializeField] private FightingAnimationController _animationController;
+
         #endregion
 
         #region Methods
 
         private void CallAttackWeakLow()
         {
-            if (_inputManager.AttackWeakLowPerformed() == true)
+            if (_inputManager.AttackWeakLowPerformed() == true && _isAttacking == false)
             {
+                Debug.Log("We're not currently attack and can attack");
+
                 _isAttacking = true;
                 _attackController.AttackWeakLow();
             }
         }
 
-        private void CheckIfNotAttacking()
+        private void StopAttacking()
         {
-            if (_inputManager.AttackWeakLowPerformed() == false)
+            if (_isAttacking == true)
             {
                 _isAttacking = false;
             }
         }
 
+        private void SubscribeToOnAnimationEndEvent()
+        {
+            Events.instance.onAnimationEnd.AddListener(StopAttacking);
+        }
+
+        //private void CheckIfNotAttacking()
+        //{
+        //    if (_inputManager.AttackWeakLowPerformed() == false)
+        //    {
+        //        _isAttacking = false;
+        //    }
+        //}
+
         #endregion
 
         #region Unity Methods
+
+        private void Start()
+        {
+            SubscribeToOnAnimationEndEvent();
+        }
 
         // Update is called once per frame
         void Update()

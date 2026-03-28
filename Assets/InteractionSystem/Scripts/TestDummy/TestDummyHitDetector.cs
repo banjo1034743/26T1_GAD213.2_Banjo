@@ -6,9 +6,13 @@ namespace GAD213.P2.InteractionSystem
     {
         #region Variables
 
-        [Header("Data")]
+        [Header("Attacks To Recognise")]
 
-        [SerializeField] private string _playerHitboxTag;
+        [SerializeField] private string _attackWeakLowTag;
+
+        [Header("Scripts")]
+
+        [SerializeField] private TestDummyAnimationController _animationController;
 
         #endregion
 
@@ -16,9 +20,11 @@ namespace GAD213.P2.InteractionSystem
 
         protected override void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.transform.CompareTag(_playerHitboxTag))
+            if (other.transform.CompareTag(_attackWeakLowTag))
             {
                 Debug.Log("The player has hit me!");
+
+                _animationController.PlayHitAnimation();
             }
         }
 

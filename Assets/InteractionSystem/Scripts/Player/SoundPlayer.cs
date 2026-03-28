@@ -41,6 +41,8 @@ namespace GAD213.P2.InteractionSystem
 
         public void PlaySFXClipAt(string soundEffect, Vector3 pos, float volume)
         {
+            Debug.Log("We're playing a SFX");
+
             // Ransaked code
             AudioSource aSource = Instantiate(_instantiatedAudioSource).GetComponent<AudioSource>();
             aSource.gameObject.transform.position = pos;

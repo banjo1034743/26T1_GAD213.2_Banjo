@@ -6,6 +6,8 @@ namespace GAD213.P2.InteractionSystem
     {
         #region Variables
 
+        //public bool _isPlayingAnim = false;
+
         [Header("Components")]
 
         [SerializeField] private Animator _playerAnimator;
@@ -29,6 +31,8 @@ namespace GAD213.P2.InteractionSystem
         #endregion
 
         #region Methods
+
+        // TODO: TRY ADDING A BOOL SPECIFICALLY FOR CHECKING IF ANIM COMPLETED RATHER THAN CHECKING FOR ISFIGHTING
 
         public void ToggleAttackWeakLowState()
         {
