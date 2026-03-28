@@ -25,6 +25,12 @@ namespace GAD213.P2.InteractionSystem
 
         private const int _attackWeakLowSFX = 0;
 
+        private const int _attackWeakHighSFX = 1;
+
+        private const int _attackStrongLowSFX = 2;
+
+        private const int _attackStrongHighSFX = 3;
+
         #endregion
 
         #region Methods
@@ -48,6 +54,7 @@ namespace GAD213.P2.InteractionSystem
             aSource.gameObject.transform.position = pos;
             aSource.clip = GetSFX(soundEffect);
             aSource.volume = volume;
+            aSource.pitch = Random.Range(0.8f, 1.2f);
 
             aSource.PlayOneShot(aSource.clip);
             Destroy(aSource.gameObject, aSource.clip.length);
@@ -59,6 +66,12 @@ namespace GAD213.P2.InteractionSystem
             {
                 case "Attack Weak Low":
                     return _soundEffects[_attackWeakLowSFX];
+                case "Attack Weak High":
+                    return _soundEffects[_attackWeakHighSFX];
+                case "Attack Strong Low":
+                    return _soundEffects[_attackStrongLowSFX];
+                case "Attack Strong High":
+                    return _soundEffects[_attackStrongHighSFX];
                 default:
                     return _soundEffects[0];
             }

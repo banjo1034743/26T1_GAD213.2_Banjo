@@ -9,7 +9,15 @@ namespace GAD213.P2.InteractionSystem
 
         [Header("Parameters")]
 
+        [Space(5)]
+
         [SerializeField] private float _attackWeakLowDamage;
+
+        [SerializeField] private float _attackWeakHighDamage;
+
+        [SerializeField] private float _attackStrongLowDamage;
+
+        [SerializeField] private float _attackStrongHighDamage;
 
         [Header("Animations")]
 
@@ -44,6 +52,21 @@ namespace GAD213.P2.InteractionSystem
             //performed = true;
         }
 
+        public void AttackWeakHigh()
+        {
+            _animationController.ToggleAttackWeakHighState();
+        }
+
+        public void AttackStrongLow()
+        {
+            _animationController.ToggleAttackStrongLowState();
+        }
+
+        public void AttackStrongHigh()
+        {
+            _animationController.ToggleAttackStrongHighState();
+        }
+
         public void DealDamage(string attackName)
         {
             switch (attackName)
@@ -51,6 +74,15 @@ namespace GAD213.P2.InteractionSystem
                 case "Attack Weak Low":
                     Debug.Log("We're dealing damage for the Attack Weak Low attack");
                     _healthManager.UpdateHealth(-_attackWeakLowDamage);
+                    break;
+                case "Attack Weak High":
+                    _healthManager.UpdateHealth(-_attackWeakHighDamage);
+                    break;
+                case "Attack Strong Low":
+                    _healthManager.UpdateHealth(-_attackStrongLowDamage);
+                    break;
+                case "Attack Strong High":
+                    _healthManager.UpdateHealth(-_attackStrongHighDamage);
                     break;
             }
         }

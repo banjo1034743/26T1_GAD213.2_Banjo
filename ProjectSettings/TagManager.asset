@@ -7,6 +7,9 @@ TagManager:
   - Ground
   - AttackWeakLow
   - TestDummy
+  - AttackWeakHigh
+  - AttackStrongLow
+  - AttackStrongHigh
   layers:
   - Default
   - TransparentFX

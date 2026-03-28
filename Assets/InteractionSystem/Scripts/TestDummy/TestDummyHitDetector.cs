@@ -10,6 +10,12 @@ namespace GAD213.P2.InteractionSystem
 
         [SerializeField] private string _attackWeakLowTag;
 
+        [SerializeField] private string _attackWeakHighTag;
+
+        [SerializeField] private string _attackStrongLowTag;
+
+        [SerializeField] private string _attackStrongHighTag;
+
         [Header("Scripts")]
 
         [SerializeField] private TestDummyAnimationController _animationController;
@@ -24,6 +30,18 @@ namespace GAD213.P2.InteractionSystem
             {
                 Debug.Log("The player has hit me!");
 
+                _animationController.PlayHitAnimation();
+            }
+            else if (other.transform.CompareTag(_attackWeakHighTag))
+            {
+                _animationController.PlayHitAnimation();
+            }
+            else if (other.transform.CompareTag(_attackStrongLowTag))
+            {
+                _animationController.PlayHitAnimation();
+            }
+            else if (other.transform.CompareTag(_attackStrongHighTag))
+            {
                 _animationController.PlayHitAnimation();
             }
         }

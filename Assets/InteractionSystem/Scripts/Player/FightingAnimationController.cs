@@ -22,6 +22,12 @@ namespace GAD213.P2.InteractionSystem
 
         private const int _attackWeakLowState = 5;
 
+        private const int _attackWeakHighState = 6;
+
+        private const int _attackStrongLowState = 7;
+
+        private const int _attackStrongHighState = 8;
+
         [Header("Scripts")]
 
         [Space(10)]
@@ -40,7 +46,22 @@ namespace GAD213.P2.InteractionSystem
             _playerAnimator.SetInteger("currentAnimationState", _attackWeakLowState);
         }
 
-        public void EndAttackWeakLowStateAnimation()
+        public void ToggleAttackWeakHighState()
+        {
+            _playerAnimator.SetInteger("currentAnimationState", _attackWeakHighState);
+        }
+
+        public void ToggleAttackStrongLowState()
+        {
+            _playerAnimator.SetInteger("currentAnimationState", _attackStrongLowState);
+        }
+
+        public void ToggleAttackStrongHighState()
+        {
+            _playerAnimator.SetInteger("currentAnimationState", _attackStrongHighState);
+        }
+
+        public void EndAttackStateAnimation()
         {
             _fightingManager.IsAttacking = false;
         }

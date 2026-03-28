@@ -23,6 +23,12 @@ namespace GAD213.P2.InteractionSystem
 
         private InputAction _inputActionAttackWeakLow;
 
+        private InputAction _inputActionAttackWeakHigh;
+
+        private InputAction _inputActionAttackStrongLow;
+
+        private InputAction _inputActionAttackStrongHigh;
+
         // === INPUT DEVICES ===
 
         private const int _usingGamepad = 0;
@@ -49,6 +55,44 @@ namespace GAD213.P2.InteractionSystem
             }
         }
 
+        /// <summary>
+        /// Called in FightingManager, which determines whether AttackController runs functionality
+        /// for attack
+        /// </summary>
+        /// <returns></returns>
+        public bool AttackWeakHighPerformed()
+        {
+            switch (_inputActionAttackWeakHigh.WasPerformedThisFrame())
+            {
+                case true:
+                    return true;
+                case false:
+                    return false;
+            }
+        }
+
+        public bool AttackStrongLowPerformed()
+        {
+            switch (_inputActionAttackStrongLow.WasPerformedThisFrame())
+            {
+                case true:
+                    return true;
+                case false:
+                    return false;
+            }
+        }
+
+        public bool AttackStrongHighPerformed()
+        {
+            switch (_inputActionAttackStrongHigh.WasPerformedThisFrame())
+            {
+                case true:
+                    return true;
+                case false:
+                    return false;
+            }
+        }
+
         private void InitializeInputActions()
         {
             _inputActionMap = _inputActionAsset.FindActionMap("Fighting");
@@ -56,6 +100,12 @@ namespace GAD213.P2.InteractionSystem
             _inputActionMove = _inputActionMap.FindAction("Move");
 
             _inputActionAttackWeakLow = _inputActionMap.FindAction("Attack Weak Low");
+
+            _inputActionAttackWeakHigh = _inputActionMap.FindAction("Attack Weak High");
+
+            _inputActionAttackStrongLow = _inputActionMap.FindAction("Attack Strong Low");
+
+            _inputActionAttackStrongHigh = _inputActionMap.FindAction("Attack Strong High");
         }
 
         #endregion
